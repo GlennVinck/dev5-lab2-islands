@@ -1,4 +1,4 @@
-class World {
+export default class World {
     constructor() {
       this.islands = []; // a good place to keep track of your islands
       this.hookEvents(); // let's kick things of by hooking up events
@@ -6,6 +6,17 @@ class World {
   
     hookEvents() {
       // hook events like clicking buttons to a specific function
+        document.querySelector('#btnAddIsland').onclick = function () {
+          console.log('click 1');
+      };
+
+      document.querySelector('#btnSave').onclick = function () {
+          console.log('click 2');
+      };
+
+      document.querySelector('#btnLoad').onclick = function () {
+          console.log('click 3');
+      };
     }
   
     save() {
