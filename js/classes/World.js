@@ -62,10 +62,25 @@ export default class World {
     console.log(this.islands);
 
     //move island to random position
-    this.moveIsland(island);
+    this.moveIsland(div);
   }
 
   moveIsland(island) {
     //animate the islands to the coordinates
+    //use the JS animations API
+    const coordinates = this.getCoordinates();
+    island.animate(
+      [
+        // keyframes
+        { transform: "translate(0, 0)" },
+        { transform: `translate(${coordinates.x}px, ${coordinates.y}px)` },
+      ],
+      {
+        // timing options
+        duration: 1000,
+        iterations: 1,
+        fill: "forwards",
+      }
+    );
   }
 }
