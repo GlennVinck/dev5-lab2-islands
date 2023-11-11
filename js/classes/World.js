@@ -13,9 +13,15 @@ export default class World {
       this.addIsland(island);
     });
 
-    document.querySelector("#btnSave").onclick = function () {};
+    // when btnSave is clicked, call function save()
+    document.querySelector("#btnSave").addEventListener("click", () => {
+      this.save();
+    });
 
-    document.querySelector("#btnLoad").onclick = function () {};
+    // when btnLoad is clicked, call function load()
+    document.querySelector("#btnLoad").addEventListener("click", () => {
+      this.load();
+    });
 
     //remove island when clicked
     document.querySelector("#app").addEventListener("click", (e) => {
@@ -55,12 +61,18 @@ export default class World {
 
   save() {
     // save array islands to localstorage as string
-    // loop over all this.islands and save the names
+    localStorage.setItem("islands", JSON.stringify(this.islands));
   }
 
   load() {
+    //clear the DOM
+    document.querySelector("#app").innerHTML = "";
     // load islands from localstorage into array
     // loop over the array and addIslands()
+    const islands = JSON.parse(localStorage.getItem("islands"));
+    islands.forEach((island) => {
+      this.addIsland(island);
+    });
   }
 
   getCoordinates() {

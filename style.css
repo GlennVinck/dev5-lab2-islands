@@ -1,6 +1,9 @@
 body {
   overflow: hidden;
   height: 100vh;
+  background-image: url("/images/bkg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .island {
@@ -9,50 +12,48 @@ body {
   height: 100px;
   background-color: green;
   color: white;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
   padding: 0.2em;
   top: 50%;
   left: 50%;
   border-radius: 50%;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-
-
 }
 
 .island:hover {
-  background-color: black !important; 
-  
+  background-color: black !important;
 }
 
 .buttons {
   position: absolute;
   bottom: 1em;
-  width: 100%;    
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 1em;
 }
 
 .btn {
-  background-color: red;
+  border: 2px solid lightblue;
+  background-color: rgba(0, 0, 20, 0.6);
   color: white;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
-  padding: 2em;
-  border-radius: 0.5em;
+  padding: 1em 2em;
+  border-radius: 100em;
   display: inline-block;
   text-decoration: none;
 }
 
 #btnSave {
-  background-color: green;
+  border: 2px solid rgb(60, 255, 180);
 }
 
 #btnLoad {
-  background-color: blue;
+  border: 2px solid rgb(255, 145, 0);
 }
