@@ -1,5 +1,8 @@
 export default class Island {
-  constructor(name) {}
+  constructor(name) {
+    this.name = name || this.getRandomName();
+    this.color = this.getRandomColor();
+  }
 
   getRandomColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16)}`;

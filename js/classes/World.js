@@ -11,16 +11,46 @@ export default class World {
     document.querySelector("#btnAddIsland").addEventListener("click", () => {
       const island = new Island();
       this.addIsland(island);
-      console.log("click 1");
     });
 
-    document.querySelector("#btnSave").onclick = function () {
-      console.log("click 2");
-    };
+    document.querySelector("#btnSave").onclick = function () {};
 
-    document.querySelector("#btnLoad").onclick = function () {
-      console.log("click 3");
-    };
+    document.querySelector("#btnLoad").onclick = function () {};
+
+    //remove island when clicked
+    document.querySelector("#app").addEventListener("click", (e) => {
+      if (e.target.classList.contains("island")) {
+        // find the clicked island's DOM element
+        const clickedIsland = e.target;
+        // find island index in the array on name and color basis
+        const index = this.islands.findIndex(
+          (island) => island.name === clickedIsland.innerHTML
+        );
+
+        new Island().remove();
+
+        clickedIsland.animate(
+          [
+            { opacity: 1 }, // Start with full opacity
+            { opacity: 0 }, // End with completely transparent
+          ],
+          {
+            duration: 1000, // Duration of the animation in milliseconds
+            fill: "forwards", // Keep the final style of the animation
+          }
+        );
+
+        // if the island is found in the array
+        if (index !== -1) {
+          // remove the island from the array
+          setTimeout(() => {
+            this.islands.splice(index, 1);
+            clickedIsland.remove();
+            console.log("Island removed from the array:", this.islands);
+          }, 1000);
+        }
+      }
+    });
   }
 
   save() {
@@ -43,23 +73,17 @@ export default class World {
   }
 
   addIsland(island) {
-    //get random color
-    //get random name
-    const color = island.getRandomColor();
-    const name = island.getRandomName();
-
     //create a div with class island
     let div = document.createElement("div");
     div.classList.add("island");
-    div.style.backgroundColor = color;
-    div.innerHTML = name;
+    div.style.backgroundColor = island.color;
+    div.innerHTML = island.name;
 
     // add the islands to the DOM
     document.querySelector("#app").appendChild(div);
 
     //add island to array
     this.islands.push(island);
-    console.log(this.islands);
 
     //move island to random position
     this.moveIsland(div);
